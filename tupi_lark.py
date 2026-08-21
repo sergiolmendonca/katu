@@ -1,0 +1,95 @@
+import sys
+from lark import Lark, Transformer, v_args
+
+
+with open("grammar.lark", encoding="utf-8") as f:
+    GRAMMAR = f.read()
+
+parser = Lark(GRAMMAR, parser="lalr")
+
+
+def _indent_block(code: str) -> str:
+    return "\n".join("    " + line for line in code.split("\n"))
+
+
+@v_args(inline=True)
+class ToPython(Transformer):
+
+    def number(self, tok):
+        v = float(tok)
+        return str(int(v)) if v == int(v) else str(v)
+
+    def string(self, tok):
+        return repr(tok[1:-1])  
+
+    def true(self):
+        return "True"
+
+    def false(self):
+        return "False"
+
+    def ident(self, tok):
+        return str(tok)
+
+    def add(self, a, b):
+        return f"({a} + {b})"
+
+    def sub(self, a, b):
+        return f"({a} - {b})"
+
+    def mul(self, a, b):
+        return f"({a} * {b})"
+
+    def div(self, a, b):
+        return f"({a} / {b})"
+
+    def comparison(self, left, op=None, right=None):
+        if op is None:
+            return left
+        return f"({left} {op} {right})"
+
+    def let_stmt(self, name, value):
+        return f"{name} = {value}"
+
+    def assign_stmt(self, name, value):
+        return f"{name} = {value}"
+
+    def print_stmt(self, value):
+        return f"print({value})"
+
+    def block(self, *stmts):
+        return "\n".join(str(s) for s in stmts)
+
+    def if_stmt(self, test, consequent, alternate=None):
+        code = f"if {test}:\n{_indent_block(str(consequent))}"
+        if alternate is not None:
+            code += f"\nelse:\n{_indent_block(str(alternate))}"
+        return code
+
+    def while_stmt(self, test, body):
+        return f"while {test}:\n{_indent_block(str(body))}"
+
+    def stmt(self, s):
+        return s
+
+    def start(self, *stmts):
+        return "\n".join(str(s) for s in stmts)
+
+
+def transpile(source: str) -> str:
+    tree = parser.parse(source)
+    return ToPython().transform(tree)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Uso: python tupi_lark.py arquivo.tupi")
+        sys.exit(1)
+
+    with open(sys.argv[1], encoding="utf-8") as f:
+        src = f.read()
+
+    py_code = transpile(src)
+    print(f"--- código Python gerado ---\n{py_code}\n")
+    print("--- saída do programa ---")
+    exec(py_code, {})

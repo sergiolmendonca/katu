@@ -1,0 +1,52 @@
+// grammar.lark
+// AVISO: não testado neste ambiente (sem acesso à internet para instalar
+// o Lark). Baseado na gramática EBNF já validada na versão em Python
+// puro. Ao rodar na sua máquina, se algo não bater 100%, o erro do Lark
+// costuma ser bem descritivo — normalmente é ajuste de precedência ou
+// de nome de terminal.
+
+start: stmt*
+
+stmt: let_stmt
+    | assign_stmt
+    | print_stmt
+    | if_stmt
+    | while_stmt
+
+let_stmt:    "mba'e" NAME "=" expr ";"
+assign_stmt: NAME "=" expr ";"
+print_stmt:  "nhe'eng" "(" expr ")" ";"
+if_stmt:     "asé" "(" expr ")" block ("amõ" block)?
+while_stmt:  "iepé" "(" expr ")" block
+
+block: "{" stmt* "}"
+
+?expr: comparison
+
+?comparison: addition (COMPOP addition)?
+
+?addition: addition "+" term   -> add
+         | addition "-" term   -> sub
+         | term
+
+?term: term "*" factor         -> mul
+     | term "/" factor         -> div
+     | factor
+
+?factor: NUMBER                -> number
+       | STRING                -> string
+       | "eté"                 -> true
+       | "naeté"               -> false
+       | NAME                  -> ident
+       | "(" expr ")"
+
+COMPOP: "==" | "<=" | ">=" | "<" | ">"
+NAME: /[a-zA-ZÀ-ÿ_][a-zA-Z0-9À-ÿ_']*/
+NUMBER: /\d+(\.\d+)?/
+STRING: /"[^"]*"/
+
+COMMENT: /#[^\n]*/
+
+%import common.WS
+%ignore WS
+%ignore COMMENT

@@ -1,0 +1,13 @@
+# Exemplo simples: conta de 1 a 5 e avisa quando o número é par
+mba'e n = 1;
+
+iepé (n < 6) {
+    asé (n == 2) {
+        nhe'eng("dois!");
+    } amõ {
+        nhe'eng(n);
+    }
+    n = n + 1;
+}
+
+nhe'eng("fim");
