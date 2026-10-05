@@ -1,9 +1,4 @@
 // grammar.lark
-// AVISO: não testado neste ambiente (sem acesso à internet para instalar
-// o Lark). Baseado na gramática EBNF já validada na versão em Python
-// puro. Ao rodar na sua máquina, se algo não bater 100%, o erro do Lark
-// costuma ser bem descritivo — normalmente é ajuste de precedência ou
-// de nome de terminal.
 
 start: stmt*
 
@@ -13,15 +8,28 @@ stmt: let_stmt
     | if_stmt
     | while_stmt
 
-let_stmt:    "mba'e" NAME "=" expr ";"
-assign_stmt: NAME "=" expr ";"
-print_stmt:  "nhe'eng" "(" expr ")" ";"
-if_stmt:     "asé" "(" expr ")" block ("amõ" block)?
-while_stmt:  "iepé" "(" expr ")" block
+let_stmt:    "mba'e" NAME "îar" expr ";"
+assign_stmt: NAME "îar" expr ";"
+print_stmt:  "kûatiar" "(" expr ")" ";"
+if_stmt:     "emonãneme" "(" expr ")" block else_part?
+else_if:   "na" "emonãneme" "ruã" "a'e" "(" expr ")" block else_part?
+else_block:   "na" "emonãneme" "ruã" block
+while_stmt:  "pukuî" "(" expr ")" block
 
-block: "{" stmt* "}"
+block: "ypy" stmt* "sykaba"
 
-?expr: comparison
+?else_part: else_if | else_block
+
+?expr: or_expr
+
+?or_expr: or_expr "koîpó" and_expr   -> or_op
+        | and_expr
+
+?and_expr: and_expr "bé" not_expr  -> and_op
+         | not_expr
+
+?not_expr: "obaîara" not_expr         -> not_op
+         | comparison
 
 ?comparison: addition (COMPOP addition)?
 
@@ -31,17 +39,19 @@ block: "{" stmt* "}"
 
 ?term: term "*" factor         -> mul
      | term "/" factor         -> div
+     | term "%" factor         -> mod
      | factor
 
 ?factor: NUMBER                -> number
-       | STRING                -> string
-       | "eté"                 -> true
-       | "naeté"               -> false
-       | NAME                  -> ident
-       | "(" expr ")"
+    | STRING                   -> string
+    | "eté"                    -> true
+    | "na" "eté" "ruã"         -> false
+    | "nhe'enga" "(" expr ")"  -> to_str            
+    | NAME                     -> ident
+    | "(" expr ")"
 
-COMPOP: "==" | "<=" | ">=" | "<" | ">"
-NAME: /[a-zA-ZÀ-ÿ_][a-zA-Z0-9À-ÿ_']*/
+COMPOP: "îakatutenhẽ" | "oîkoé" | "a'yrĩ-eté" | "turusu-eté"
+NAME: /[^\W\d][\w']*/
 NUMBER: /\d+(\.\d+)?/
 STRING: /"[^"]*"/
 

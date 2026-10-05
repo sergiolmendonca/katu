@@ -11,6 +11,13 @@ parser = Lark(GRAMMAR, parser="lalr")
 def _indent_block(code: str) -> str:
     return "\n".join("    " + line for line in code.split("\n"))
 
+OPS = {
+    "îakatutenhẽ": "==",
+    "oîkoé": "!=",
+    "a'yrĩ-eté": "<",
+    "turusu-eté": ">",
+}
+
 
 @v_args(inline=True)
 class ToPython(Transformer):
@@ -43,10 +50,13 @@ class ToPython(Transformer):
     def div(self, a, b):
         return f"({a} / {b})"
 
+    def mod(self, a, b):
+            return f"({a} % {b})"
+
     def comparison(self, left, op=None, right=None):
         if op is None:
             return left
-        return f"({left} {op} {right})"
+        return f"({left} {OPS[str(op)]} {right})"
 
     def let_stmt(self, name, value):
         return f"{name} = {value}"
@@ -57,14 +67,36 @@ class ToPython(Transformer):
     def print_stmt(self, value):
         return f"print({value})"
 
+    def to_str(self, value):
+        return f"str({value})"
+
     def block(self, *stmts):
         return "\n".join(str(s) for s in stmts)
 
     def if_stmt(self, test, consequent, alternate=None):
         code = f"if {test}:\n{_indent_block(str(consequent))}"
         if alternate is not None:
-            code += f"\nelse:\n{_indent_block(str(alternate))}"
+            code += f"\n{alternate}"
         return code
+    
+    def else_if(self, test, consequent, alternate=None):
+        code = f"elif {test}:\n{_indent_block(str(consequent))}"
+        if alternate is not None:
+            code += f"\n{alternate}"
+        return code
+    
+    def else_block(self, body):
+        code = f"else:\n{_indent_block(str(body))}"
+        return code
+    
+    def or_op(self, a, b):
+        return f"({a} or {b})"
+
+    def and_op(self, a, b):
+        return f"({a} and {b})"
+
+    def not_op(self, a):
+        return f"(not {a})"
 
     def while_stmt(self, test, body):
         return f"while {test}:\n{_indent_block(str(body))}"
