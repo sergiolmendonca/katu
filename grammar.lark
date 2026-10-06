@@ -46,7 +46,9 @@ block: "ypy" stmt* "sykaba"
     | STRING                   -> string
     | "eté"                    -> true
     | "na" "eté" "ruã"         -> false
-    | "nhe'enga" "(" expr ")"  -> to_str            
+    | "nhe'enga" "(" expr ")"  -> to_str 
+    | "enhe'eng" "(" expr? ")" -> input_func  
+    | "apó" "papasaba" "(" NUMBER "," NUMBER ")" -> rand_func         
     | NAME                     -> ident
     | "(" expr ")"
 

@@ -22,6 +22,10 @@ OPS = {
 @v_args(inline=True)
 class ToPython(Transformer):
 
+    def __init__(self):
+        super().__init__()
+        self.imports = set()
+
     def number(self, tok):
         v = float(tok)
         return str(int(v)) if v == int(v) else str(v)
@@ -58,6 +62,9 @@ class ToPython(Transformer):
             return left
         return f"({left} {OPS[str(op)]} {right})"
 
+    def import_stmt(self, name):
+        return f"import {name}"
+
     def let_stmt(self, name, value):
         return f"{name} = {value}"
 
@@ -66,6 +73,15 @@ class ToPython(Transformer):
 
     def print_stmt(self, value):
         return f"print({value})"
+    
+    def input_func(self, alternate=None):
+        if alternate is not None:
+            return f"input({alternate})"
+        return f"input()"
+    
+    def rand_func(self, start, end):
+        self.imports.add("random")
+        return f"random.randint({start}, {end})"
 
     def to_str(self, value):
         return f"str({value})"
@@ -105,7 +121,9 @@ class ToPython(Transformer):
         return s
 
     def start(self, *stmts):
-        return "\n".join(str(s) for s in stmts)
+        header = "\n".join(f"import {m}" for m in sorted(self.imports))
+        body = "\n".join(str(s) for s in stmts)
+        return f"{header}\n{body}" if header else body
 
 
 def transpile(source: str) -> str:
