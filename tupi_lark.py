@@ -11,6 +11,10 @@ parser = Lark(GRAMMAR, parser="lalr")
 def _indent_block(code: str) -> str:
     return "\n".join("    " + line for line in code.split("\n"))
 
+def _fix_var_name(tok):
+    n = str(tok).replace("'", "_")
+    return "tupi_var_" + n
+
 OPS = {
     "îakatutenhẽ": "==",
     "oîkoé": "!=",
@@ -40,7 +44,7 @@ class ToPython(Transformer):
         return "False"
 
     def ident(self, tok):
-        return str(tok)
+        return str(_fix_var_name(tok))
 
     def add(self, a, b):
         return f"({a} + {b})"
@@ -66,10 +70,10 @@ class ToPython(Transformer):
         return f"import {name}"
 
     def let_stmt(self, name, value):
-        return f"{name} = {value}"
+        return f"{_fix_var_name(name)} = {value}"
 
     def assign_stmt(self, name, value):
-        return f"{name} = {value}"
+        return f"{_fix_var_name(name)} = {value}"
 
     def print_stmt(self, value):
         return f"print({value})"
@@ -81,10 +85,15 @@ class ToPython(Transformer):
     
     def rand_func(self, start, end):
         self.imports.add("random")
+        if start is None:
+            return f"random.random()"
         return f"random.randint({start}, {end})"
 
-    def to_str(self, value):
+    def str_func(self, value):
         return f"str({value})"
+    
+    def int_func(self, value):
+        return f"int({value})"
 
     def block(self, *stmts):
         return "\n".join(str(s) for s in stmts)
@@ -133,7 +142,7 @@ def transpile(source: str) -> str:
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Uso: python tupi_lark.py arquivo.tupi")
+        print("Uso: python tupi_lark.py arquivo.katu")
         sys.exit(1)
 
     with open(sys.argv[1], encoding="utf-8") as f:

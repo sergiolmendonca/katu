@@ -1,0 +1,20 @@
+
+kûatiar("Escreva um número inteiro: ");
+mba'e n1 îar papasabanamo(enhe'eng());
+
+kûatiar("Escreva outro número inteiro: ");
+mba'e n2 îar papasabanamo(enhe'eng());
+
+mba'e soma îar n1 + n2;
+mba'e subtracao îar n1 - n2;
+mba'e multiplicacao îar n1 * n2;
+mba'e divisao îar n1 / n2;
+
+kûatiar("A soma dos 2 números é: ");
+kûatiar(nhe'enganamo(soma));
+kûatiar("A subtração dos 2 números é: ");
+kûatiar(nhe'enganamo(subtracao));
+kûatiar("A multiplicação dos 2 números é: ");
+kûatiar(nhe'enganamo(multiplicacao));
+kûatiar("A divisão dos 2 números é: ");
+kûatiar(nhe'enganamo(divisao));

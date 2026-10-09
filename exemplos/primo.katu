@@ -1,0 +1,33 @@
+
+mba'e parar' îar na eté ruã;
+
+pukuî (obaîara parar')
+ypy
+    kûatiar("Digite um número de 2 a 1000 para saber se é primo: ");
+    mba'e n îar papasabanamo(enhe'eng());
+
+    emonãneme (n turusu-eté 1 bé n a'yrĩ-eté 1001)
+    ypy
+        parar' îar eté;
+        mba'e i îar 2;
+        mba'e mod îar 1;
+        pukuî (i a'yrĩ-eté n bé mod oîkoé 0)
+        ypy
+            mod îar n%i;
+            emonãneme (mod îakatutenhẽ 0)
+            ypy
+                kûatiar("O número não é primo. É divisível por " + nhe'enganamo(i) + " também.");
+            sykaba
+            i îar i+1;
+        sykaba
+
+        emonãneme (mod oîkoé 0)
+        ypy
+            kûatiar("O número é primo.");
+        sykaba
+    sykaba
+    na emonãneme ruã
+    ypy
+        kûatiar("Número inválido");
+    sykaba
+sykaba

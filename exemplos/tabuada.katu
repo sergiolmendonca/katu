@@ -1,0 +1,23 @@
+
+mba'e continua îar eté;
+
+pukuî (continua)
+ypy
+    kûatiar("digite um número de 1 a 10 para saber a tabuada: ");
+    mba'e n îar papasabanamo(enhe'eng());
+
+    emonãneme (n a'yrĩ-eté 1 koîpó n turusu-eté 10)
+    ypy
+        kûatiar("Número inválido");
+    sykaba
+    na emonãneme ruã
+    ypy
+        continua îar na eté ruã;
+        mba'e i îar 1;
+        pukuî (i a'yrĩ-eté 11)
+        ypy
+            kûatiar(nhe'enganamo(n) + " x " + nhe'enganamo(i) + " = " + nhe'enganamo(n*i));
+            i îar i + 1;
+        sykaba
+    sykaba
+sykaba

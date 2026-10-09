@@ -1,5 +1,3 @@
-// grammar.lark
-
 start: stmt*
 
 stmt: let_stmt
@@ -11,8 +9,8 @@ stmt: let_stmt
 let_stmt:    "mba'e" NAME "îar" expr ";"
 assign_stmt: NAME "îar" expr ";"
 print_stmt:  "kûatiar" "(" expr ")" ";"
-if_stmt:     "emonãneme" "(" expr ")" block else_part?
-else_if:   "na" "emonãneme" "ruã" "a'e" "(" expr ")" block else_part?
+if_stmt:     "emonãneme" "(" expr ")" block [else_part]
+else_if:   "na" "emonãneme" "ruã" "a'e" "(" expr ")" block [else_part]
 else_block:   "na" "emonãneme" "ruã" block
 while_stmt:  "pukuî" "(" expr ")" block
 
@@ -22,37 +20,41 @@ block: "ypy" stmt* "sykaba"
 
 ?expr: or_expr
 
-?or_expr: or_expr "koîpó" and_expr   -> or_op
+?or_expr: or_expr "koîpó" and_expr          -> or_op
         | and_expr
 
-?and_expr: and_expr "bé" not_expr  -> and_op
+?and_expr: and_expr "bé" not_expr           -> and_op
          | not_expr
 
-?not_expr: "obaîara" not_expr         -> not_op
+?not_expr: "obaîara" not_expr               -> not_op
          | comparison
 
-?comparison: addition (COMPOP addition)?
+?comparison: addition [COMPOP addition]
 
-?addition: addition "+" term   -> add
-         | addition "-" term   -> sub
+?addition: addition "+" term                -> add
+         | addition "-" term                -> sub
          | term
 
-?term: term "*" factor         -> mul
-     | term "/" factor         -> div
-     | term "%" factor         -> mod
+?term: term "*" factor                      -> mul
+     | term "/" factor                      -> div
+     | term "%" factor                      -> mod
      | factor
 
-?factor: NUMBER                -> number
-    | STRING                   -> string
-    | "eté"                    -> true
-    | "na" "eté" "ruã"         -> false
-    | "nhe'enga" "(" expr ")"  -> to_str 
-    | "enhe'eng" "(" expr? ")" -> input_func  
-    | "apó" "papasaba" "(" NUMBER "," NUMBER ")" -> rand_func         
-    | NAME                     -> ident
+?factor: NUMBER                             -> number
+    | STRING                                -> string
+    | NAME                                  -> ident
+    | "eté"                                 -> true
+    | "na" "eté" "ruã"                      -> false
+    | "nhe'enganamo" "(" expr ")"           -> str_func 
+    | "enhe'eng" "(" [expr] ")"             -> input_func  
+    | "katu'ok" "(" [NUMBER "," NUMBER] ")" -> rand_func    
+    | "papasabanamo" "(" expr ")"         -> int_func
     | "(" expr ")"
 
-COMPOP: "îakatutenhẽ" | "oîkoé" | "a'yrĩ-eté" | "turusu-eté"
+COMPOP: "îakatutenhẽ" 
+    | "oîkoé" 
+    | "a'yrĩ-eté" 
+    | "turusu-eté"
 NAME: /[^\W\d][\w']*/
 NUMBER: /\d+(\.\d+)?/
 STRING: /"[^"]*"/

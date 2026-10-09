@@ -1,7 +1,0 @@
-
-kûatiar("Escreva seu nome:");
-mba'e nome îar enhe'eng();
-
-mba'e idade îar enhe'eng("Escreva sua idade: ");
-
-kûatiar("Seu nome é " + nome + " e você tem " + idade + " anos!");
