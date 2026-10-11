@@ -1,0 +1,39 @@
+(* Estrutura do programa *)
+start       ::= { stmt }
+stmt        ::= let_stmt | assign_stmt | print_stmt | if_stmt | while_stmt
+let_stmt    ::= "mba'e" NAME "îar" expr ";"
+assign_stmt ::= NAME "îar" expr ";"
+print_stmt  ::= "kûatiar" "(" expr ")" ";"
+if_stmt     ::= "emonãneme" "(" expr ")" block [ else_part ]
+else_part   ::= else_if | else_block
+else_if     ::= "na" "emonãneme" "ruã" "a'e" "(" expr ")" block [ else_part ]
+else_block  ::= "na" "emonãneme" "ruã" block
+while_stmt  ::= "pukuî" "(" expr ")" block
+block       ::= "ypy" { stmt } "sykaba"
+
+(* Expressões *)
+expr        ::= or_expr
+or_expr     ::= and_expr { "koîpó" and_expr }
+and_expr    ::= not_expr { "bé" not_expr }
+not_expr    ::= "obaîara" not_expr | comparison
+comparison  ::= addition [ COMPOP addition ]
+addition    ::= term { ( "+" | "-" ) term }
+term        ::= factor { ( "*" | "/" | "%" ) factor }
+factor      ::= NUMBER | STRING | NAME
+              | "eté" | "na" "eté" "ruã"
+              | "nhe'enganamo" "(" expr ")"
+              | "enhe'eng" "(" [ expr ] ")"
+              | "katu'ok" "(" [ NUMBER "," NUMBER ] ")"
+              | "papasabanamo" "(" expr ")"
+              | "(" expr ")"
+
+(* Elementos lexicais *)
+COMPOP      ::= "îakatutenhẽ" | "oîkoé" | "a'yrĩ-eté" | "turusu-eté"
+NAME        ::= ( LETTER | "_" ) { LETTER | DIGIT | "_" | "'" }
+NUMBER      ::= DIGIT { DIGIT } [ "." DIGIT { DIGIT } ]
+STRING      ::= '"' { char_but_quote } '"'
+COMMENT     ::= "#" { char_but_newline }    (* ignorado *)
+LETTER      ::= ? qualquer letra Unicode, inclusive acentuada ?
+DIGIT       ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+char_but_quote   ::= ? qualquer caractere exceto aspas duplas ?
+char_but_newline ::= ? qualquer caractere exceto quebra de linha ?

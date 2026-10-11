@@ -13,7 +13,7 @@ def _indent_block(code: str) -> str:
 
 def _fix_var_name(tok):
     n = str(tok).replace("'", "_")
-    return "tupi_var_" + n
+    return "katu_" + n
 
 OPS = {
     "îakatutenhẽ": "==",
