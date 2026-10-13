@@ -137,6 +137,7 @@ class ToPython(Transformer):
 
 def transpile(source: str) -> str:
     tree = parser.parse(source)
+    print(f"--- árvore gerada ---\n{tree.pretty()}\n")
     return ToPython().transform(tree)
 
 
@@ -150,5 +151,5 @@ if __name__ == "__main__":
 
     py_code = transpile(src)
     print(f"--- código Python gerado ---\n{py_code}\n")
-    print("--- saída do programa ---")
+    print("--- saída do programa ---\n")
     exec(py_code, {})

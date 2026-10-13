@@ -9,8 +9,8 @@ stmt: let_stmt
 let_stmt:    "mba'e" NAME "îar" expr ";"
 assign_stmt: NAME "îar" expr ";"
 print_stmt:  "kûatiar" "(" expr ")" ";"
-if_stmt:     "emonãneme" "(" expr ")" block [else_part]
-else_if:   "na" "emonãneme" "ruã" "a'e" "(" expr ")" block [else_part]
+if_stmt:     "emonãneme" "(" expr ")" block else_part?
+else_if:   "na" "emonãneme" "ruã" "a'e" "(" expr ")" block else_part?
 else_block:   "na" "emonãneme" "ruã" block
 while_stmt:  "pukuî" "(" expr ")" block
 
@@ -29,7 +29,7 @@ block: "ypy" stmt* "sykaba"
 ?not_expr: "obaîara" not_expr               -> not_op
          | comparison
 
-?comparison: addition [COMPOP addition]
+?comparison: addition (COMPOP addition)?
 
 ?addition: addition "+" term                -> add
          | addition "-" term                -> sub
@@ -46,8 +46,8 @@ block: "ypy" stmt* "sykaba"
     | "eté"                                 -> true
     | "na" "eté" "ruã"                      -> false
     | "nhe'enganamo" "(" expr ")"           -> str_func 
-    | "enhe'eng" "(" [expr] ")"             -> input_func  
-    | "katu'ok" "(" [NUMBER "," NUMBER] ")" -> rand_func    
+    | "enhe'eng" "(" expr? ")"             -> input_func  
+    | "katu'ok" "(" (NUMBER "," NUMBER)? ")" -> rand_func    
     | "papasabanamo" "(" expr ")"         -> int_func
     | "(" expr ")"
 

@@ -3,6 +3,7 @@ mba'e n îar katu'ok(1, 10);
 mba'e continua îar eté;
 mba'e contador îar 0;
 
+#EXEMPLO DE COMENTÁRIO
 pukuî (continua)
 ypy
     contador îar contador + 1;
