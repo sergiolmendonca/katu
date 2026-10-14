@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/icon.png" alt="Logo da Katu" width="160">
+</p>
+
 # Katu
 
 > **katu** *(s.)* – o bem; coisa boa; bondade.
