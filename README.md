@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icon.png" alt="Logo da Katu" width="160">
+  <img src="assets/logo.png" alt="Logo da Katu" width="160">
 </p>
 
 # Katu
