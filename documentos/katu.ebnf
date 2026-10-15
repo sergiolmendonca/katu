@@ -1,4 +1,3 @@
-(* Estrutura do programa *)
 start       ::= { stmt }
 stmt        ::= let_stmt | assign_stmt | print_stmt | if_stmt | while_stmt
 let_stmt    ::= "mba'e" NAME "îar" expr ";"
@@ -11,7 +10,6 @@ else_block  ::= "na" "emonãneme" "ruã" block
 while_stmt  ::= "pukuî" "(" expr ")" block
 block       ::= "ypy" { stmt } "sykaba"
 
-(* Expressões *)
 expr        ::= or_expr
 or_expr     ::= and_expr { "koîpó" and_expr }
 and_expr    ::= not_expr { "bé" not_expr }
@@ -27,7 +25,6 @@ factor      ::= NUMBER | STRING | NAME
               | "papasabanamo" "(" expr ")"
               | "(" expr ")"
 
-(* Elementos lexicais *)
 COMPOP      ::= "îakatutenhẽ" | "oîkoé" | "a'yrĩ-eté" | "turusu-eté"
 NAME        ::= ( LETTER | "_" ) { LETTER | DIGIT | "_" | "'" }
 NUMBER      ::= DIGIT { DIGIT } [ "." DIGIT { DIGIT } ]
