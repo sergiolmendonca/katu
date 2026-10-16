@@ -172,28 +172,28 @@ def test_comentario_de_linha_e_ignorado():
 
 
 def test_comentario_no_fim_da_linha_e_ignorado():
-    assert transpilar("mba'e a îar 1; # um comentário\n") == "katu_a = 1"
+    assert transpilar("mba'e a iaraba 1; # um comentário\n") == "katu_a = 1"
 
 
 def test_apostrofo_em_nome_de_variavel_vira_sublinhado():
-    assert transpilar("mba'e parar' îar eté;") == "katu_parar_ = True"
+    assert transpilar("mba'e parar' iaraba seté;") == "katu_parar_ = True"
 
 
 def test_precedencia_dos_operadores():
-    assert transpilar("mba'e x îar 2 + 3 * 4;") == "katu_x = (2 + (3 * 4))"
+    assert transpilar("mba'e x iaraba 2 + 3 * 4;") == "katu_x = (2 + (3 * 4))"
 
 
 def test_sorteio_adiciona_import_random():
-    codigo = transpilar("mba'e x îar katu'ok(1, 6);")
+    codigo = transpilar("mba'e x iaraba katu'okaba(1, 6);")
     assert codigo.splitlines()[0] == "import random"
     assert "random.randint(1, 6)" in codigo
 
 
 @pytest.mark.parametrize("fonte", [
-    "mba'e x îar 1",
-    "mba'e x îar ;",
-    "mba'e x îar @;",
-    "emonãneme (eté) kûatiar(1);",
+    "mba'e x iaraba 1",
+    "mba'e x iaraba ;",
+    "mba'e x iaraba @;",
+    "emonãneme (seté) kuatiasába(1);",
 ])
 def test_programa_invalido_e_rejeitado(fonte):
     with pytest.raises(UnexpectedInput):

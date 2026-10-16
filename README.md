@@ -46,16 +46,16 @@ python tupi_lark.py exemplos/hello-world.katu
 
 O vocabulário atualmente tem 22 palavras e pode ser consultado no arquivo [EBNF](documentos/katu.ebnf)
 
-Regras básicas: cada instrução termina com `;`, blocos ficam entre `ypy` e `sykaba`, textos usam aspas duplas e comentários começam com `#`.
+Regras básicas: cada instrução termina com `;`, blocos ficam entre `ypyrunga` e `sykaba`, textos usam aspas duplas e comentários começam com `#`.
 
 ## Exemplo de código
 
 ### Olá, mundo
 
 ```
-mba'e helloWorld îar "Olá Mundo!";
+mba'e helloWorld iaraba "Olá Mundo!";
 
-kûatiar(helloWorld);
+kuatiasába(helloWorld);
 ```
 
 Saída:

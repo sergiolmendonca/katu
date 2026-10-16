@@ -1,15 +1,15 @@
 
-mba'e n îar papasabanamo(enhe'eng("Digite um número para saber se é par ou ímpar: "));
+mba'e n iaraba papasabamo(terenhe'eng("Digite um número para saber se é par ou ímpar: "));
 
-emonãneme (n îakatutenhẽ 0) 
-ypy
-    kûatiar("Zero é par");
+emonãneme (n anheté 0) 
+ypyrunga
+    kuatiasába("Zero é par");
 sykaba 
-na emonãneme ruã a'e (n % 2 îakatutenhẽ 0) 
-ypy
-    kûatiar(nhe'enganamo(n) + " é par");
+marandé (n % 2 anheté 0) 
+ypyrunga
+    kuatiasába(nhe'enga rupi(n) + " é par");
 sykaba 
-na emonãneme ruã 
-ypy
-    kûatiar(nhe'enganamo(n) + " é ímpar");
+aane'yme 
+ypyrunga
+    kuatiasába(nhe'enga rupi(n) + " é ímpar");
 sykaba

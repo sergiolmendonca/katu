@@ -1,23 +1,23 @@
 
-mba'e continua îar eté;
+mba'e continua iaraba seté;
 
-pukuî (continua)
-ypy
-    kûatiar("digite um número de 1 a 10 para saber a tabuada: ");
-    mba'e n îar papasabanamo(enhe'eng());
+remebé (continua)
+ypyrunga
+    kuatiasába("digite um número de 1 a 10 para saber a tabuada: ");
+    mba'e n iaraba papasabamo(terenhe'eng());
 
-    emonãneme (n a'yrĩ-eté 1 koîpó n turusu-eté 10)
-    ypy
-        kûatiar("Número inválido");
+    emonãneme (n ta'yrĩeté sosé 1 koipó n turusueté sosé 10)
+    ypyrunga
+        kuatiasába("Número inválido");
     sykaba
-    na emonãneme ruã
-    ypy
-        continua îar na eté ruã;
-        mba'e i îar 1;
-        pukuî (i a'yrĩ-eté 11)
-        ypy
-            kûatiar(nhe'enganamo(n) + " x " + nhe'enganamo(i) + " = " + nhe'enganamo(n*i));
-            i îar i + 1;
+    aane'yme
+    ypyrunga
+        continua iaraba na setéi;
+        mba'e i iaraba 1;
+        remebé (i ta'yrĩeté sosé 11)
+        ypyrunga
+            kuatiasába(nhe'enga rupi(n) + " x " + nhe'enga rupi(i) + " = " + nhe'enga rupi(n*i));
+            i iaraba i + 1;
         sykaba
     sykaba
 sykaba

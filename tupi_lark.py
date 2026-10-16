@@ -16,10 +16,10 @@ def _fix_var_name(tok):
     return "katu_" + n
 
 OPS = {
-    "îakatutenhẽ": "==",
-    "oîkoé": "!=",
-    "a'yrĩ-eté": "<",
-    "turusu-eté": ">",
+    "anheté": "==",
+    "moingoé": "!=",
+    "ta'yrĩeté sosé": "<",
+    "turusueté sosé": ">",
 }
 
 

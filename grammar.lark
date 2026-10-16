@@ -6,55 +6,55 @@ stmt: let_stmt
     | if_stmt
     | while_stmt
 
-let_stmt:    "mba'e" NAME "îar" expr ";"
-assign_stmt: NAME "îar" expr ";"
-print_stmt:  "kûatiar" "(" expr ")" ";"
+let_stmt:    "mba'e" NAME "iaraba" expr ";"
+assign_stmt: NAME "iaraba" expr ";"
+print_stmt:  "kuatiasába" "(" expr ")" ";"
 if_stmt:     "emonãneme" "(" expr ")" block else_part?
-else_if:   "na" "emonãneme" "ruã" "a'e" "(" expr ")" block else_part?
-else_block:   "na" "emonãneme" "ruã" block
-while_stmt:  "pukuî" "(" expr ")" block
+else_if:     "marandé" "(" expr ")" block else_part?
+else_block:  "aane'yme" block
+while_stmt:  "remebé" "(" expr ")" block
 
-block: "ypy" stmt* "sykaba"
+block: "ypyrunga" stmt* "sykaba"
 
 ?else_part: else_if | else_block
 
 ?expr: or_expr
 
-?or_expr: or_expr "koîpó" and_expr          -> or_op
+?or_expr: or_expr "koipó" and_expr                  -> or_op
         | and_expr
 
-?and_expr: and_expr "bé" not_expr           -> and_op
+?and_expr: and_expr "abé" not_expr                  -> and_op
          | not_expr
 
-?not_expr: "obaîara" not_expr               -> not_op
+?not_expr: "aani" not_expr                          -> not_op
          | comparison
 
 ?comparison: addition (COMPOP addition)?
 
-?addition: addition "+" term                -> add
-         | addition "-" term                -> sub
+?addition: addition "+" term                        -> add
+         | addition "-" term                        -> sub
          | term
 
-?term: term "*" factor                      -> mul
-     | term "/" factor                      -> div
-     | term "%" factor                      -> mod
+?term: term "*" factor                              -> mul
+     | term "/" factor                              -> div
+     | term "%" factor                              -> mod
      | factor
 
-?factor: NUMBER                             -> number
-    | STRING                                -> string
-    | NAME                                  -> ident
-    | "eté"                                 -> true
-    | "na" "eté" "ruã"                      -> false
-    | "nhe'enganamo" "(" expr ")"           -> str_func 
-    | "enhe'eng" "(" expr? ")"             -> input_func  
-    | "katu'ok" "(" (NUMBER "," NUMBER)? ")" -> rand_func    
-    | "papasabanamo" "(" expr ")"         -> int_func
+?factor: NUMBER                                     -> number
+    | STRING                                        -> string
+    | NAME                                          -> ident
+    | "seté"                                        -> true
+    | "na" "setéi"                                  -> false
+    | "nhe'enga" "rupi" "(" expr ")"                  -> str_func 
+    | "terenhe'eng" "(" expr? ")"                   -> input_func  
+    | "katu'okaba" "(" (NUMBER "," NUMBER)? ")"    -> rand_func    
+    | "papasabamo" "(" expr ")"                     -> int_func
     | "(" expr ")"
 
-COMPOP: "îakatutenhẽ" 
-    | "oîkoé" 
-    | "a'yrĩ-eté" 
-    | "turusu-eté"
+COMPOP: "anheté" 
+    | "moingoé" 
+    | "ta'yrĩeté sosé" 
+    | "turusueté sosé"
 NAME: /[^\W\d][\w']*/
 NUMBER: /\d+(\.\d+)?/
 STRING: /"[^"]*"/

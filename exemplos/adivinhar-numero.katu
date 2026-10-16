@@ -1,35 +1,34 @@
 
-mba'e n îar katu'ok(1, 10);
-mba'e continua îar eté;
-mba'e contador îar 0;
+mba'e n iaraba katu'okaba(1, 10);
+mba'e continua iaraba seté;
+mba'e contador iaraba 0;
 
 #EXEMPLO DE COMENTÁRIO
-pukuî (continua)
-ypy
-    contador îar contador + 1;
-    mba'e chute îar papasabanamo(enhe'eng("Chute um número de 1 a 10: "));
-    emonãneme(chute îakatutenhẽ n)
-    ypy
-        kûatiar("Parabéns, você acertou em " + nhe'enganamo(contador) + " tentativa(s)! o número era " + nhe'enganamo(n));
-        continua îar enhe'eng("deseja jogar novamente? [S/N]: ") îakatutenhẽ "S";
+remebé (continua)
+ypyrunga
+    contador iaraba contador + 1;
+    mba'e chute iaraba papasabamo(terenhe'eng("Chute um número de 1 a 10: "));
+    emonãneme(chute anheté n)
+    ypyrunga
+        kuatiasába("Parabéns, você acertou em " + nhe'enga rupi(contador) + " tentativa(s)! o número era " + nhe'enga rupi(n));
+        continua iaraba terenhe'eng("deseja jogar novamente? [S/N]: ") anheté "S";
         emonãneme(continua)
-        ypy
-            n îar katu'ok(1, 10);
-            contador îar 0;
+        ypyrunga
+            n iaraba katu'okaba(1, 10);
+            contador iaraba 0;
         sykaba
     sykaba
-    na emonãneme ruã
-    ypy
-
-        emonãneme(n turusu-eté chute)
-        ypy
-            kûatiar("Número errado. É um pouco maior");
+    aane'yme
+    ypyrunga
+        emonãneme(n turusueté sosé chute)
+        ypyrunga
+            kuatiasába("Número errado. É um pouco maior");
         sykaba
-        na emonãneme ruã
-        ypy
-            kûatiar("Número errado. É um pouco menor");
+        aane'yme
+        ypyrunga
+            kuatiasába("Número errado. É um pouco menor");
         sykaba
     sykaba
 sykaba
 
-kûatiar("Fim de jogo");
+kuatiasába("Fim de jogo");

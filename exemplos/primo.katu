@@ -1,33 +1,33 @@
 
-mba'e parar' îar na eté ruã;
+mba'e parar' iaraba na setéi;
 
-pukuî (obaîara parar')
-ypy
-    kûatiar("Digite um número de 2 a 1000 para saber se é primo: ");
-    mba'e n îar papasabanamo(enhe'eng());
+remebé (aani parar')
+ypyrunga
+    kuatiasába("Digite um número de 2 a 1000 para saber se é primo: ");
+    mba'e n iaraba papasabamo(terenhe'eng());
 
-    emonãneme (n turusu-eté 1 bé n a'yrĩ-eté 1001)
-    ypy
-        parar' îar eté;
-        mba'e i îar 2;
-        mba'e mod îar 1;
-        pukuî (i a'yrĩ-eté n bé mod oîkoé 0)
-        ypy
-            mod îar n%i;
-            emonãneme (mod îakatutenhẽ 0)
-            ypy
-                kûatiar("O número não é primo. É divisível por " + nhe'enganamo(i) + " também.");
+    emonãneme (n turusueté sosé 1 abé n ta'yrĩeté sosé 1001)
+    ypyrunga
+        parar' iaraba seté;
+        mba'e i iaraba 2;
+        mba'e mod iaraba 1;
+        remebé (i ta'yrĩeté sosé n abé mod moingoé 0)
+        ypyrunga
+            mod iaraba n%i;
+            emonãneme (mod anheté 0)
+            ypyrunga
+                kuatiasába("O número não é primo. É divisível por " + nhe'enga rupi(i) + " também.");
             sykaba
-            i îar i+1;
+            i iaraba i+1;
         sykaba
 
-        emonãneme (mod oîkoé 0)
-        ypy
-            kûatiar("O número é primo.");
+        emonãneme (mod moingoé 0)
+        ypyrunga
+            kuatiasába("O número é primo.");
         sykaba
     sykaba
-    na emonãneme ruã
-    ypy
-        kûatiar("Número inválido");
+    aane'yme
+    ypyrunga
+        kuatiasába("Número inválido");
     sykaba
 sykaba

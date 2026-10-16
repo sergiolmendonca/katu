@@ -1,31 +1,31 @@
 start       ::= { stmt }
 stmt        ::= let_stmt | assign_stmt | print_stmt | if_stmt | while_stmt
-let_stmt    ::= "mba'e" NAME "îar" expr ";"
-assign_stmt ::= NAME "îar" expr ";"
-print_stmt  ::= "kûatiar" "(" expr ")" ";"
+let_stmt    ::= "mba'e" NAME "iaraba" expr ";"
+assign_stmt ::= NAME "iaraba" expr ";"
+print_stmt  ::= "kuatiasába" "(" expr ")" ";"
 if_stmt     ::= "emonãneme" "(" expr ")" block [ else_part ]
 else_part   ::= else_if | else_block
-else_if     ::= "na" "emonãneme" "ruã" "a'e" "(" expr ")" block [ else_part ]
-else_block  ::= "na" "emonãneme" "ruã" block
-while_stmt  ::= "pukuî" "(" expr ")" block
-block       ::= "ypy" { stmt } "sykaba"
+else_if     ::= "marandé" "(" expr ")" block [ else_part ]
+else_block  ::= "aane'yme" block
+while_stmt  ::= "remebé" "(" expr ")" block
+block       ::= "ypyrunga" { stmt } "sykaba"
 
 expr        ::= or_expr
-or_expr     ::= and_expr { "koîpó" and_expr }
-and_expr    ::= not_expr { "bé" not_expr }
-not_expr    ::= "obaîara" not_expr | comparison
+or_expr     ::= and_expr { "koipó" and_expr }
+and_expr    ::= not_expr { "abé" not_expr }
+not_expr    ::= "aani" not_expr | comparison
 comparison  ::= addition [ COMPOP addition ]
 addition    ::= term { ( "+" | "-" ) term }
 term        ::= factor { ( "*" | "/" | "%" ) factor }
 factor      ::= NUMBER | STRING | NAME
-              | "eté" | "na" "eté" "ruã"
-              | "nhe'enganamo" "(" expr ")"
-              | "enhe'eng" "(" [ expr ] ")"
-              | "katu'ok" "(" [ NUMBER "," NUMBER ] ")"
-              | "papasabanamo" "(" expr ")"
+              | "seté" | "na" "seté" "ruã"
+              | "nhe'enga rupi" "(" expr ")"
+              | "terenhe'eng" "(" [ expr ] ")"
+              | "katu'okaba" "(" [ NUMBER "," NUMBER ] ")"
+              | "papasabamo" "(" expr ")"
               | "(" expr ")"
 
-COMPOP      ::= "îakatutenhẽ" | "oîkoé" | "a'yrĩ-eté" | "turusu-eté"
+COMPOP      ::= "anheté" | "moingoé" | "ta'yrĩeté sosé" | "turusueté sosé"
 NAME        ::= ( LETTER | "_" ) { LETTER | DIGIT | "_" | "'" }
 NUMBER      ::= DIGIT { DIGIT } [ "." DIGIT { DIGIT } ]
 STRING      ::= '"' { char_but_quote } '"'
